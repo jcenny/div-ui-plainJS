@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Div UI Plain JS</title>
+  </head>
+  <style>
+    .form {
+          display: flex;
+          justify-content: center;
+          position: relative;
+          top: 100px;
+    }
+    .container {
+                width: 75%;
+                border: 1px solid black;
+                margin: auto;
+                position: relative;
+                top: 200px;
+               }
+    .circle { 
+              background-color: black;
+              width: 100px;
+              height: 100px;
+              border-radius: 50px;
+              display: inline-block;
+            }
+  </style>
+  <body>
+    <div class='app'>
+      <div class='form'>
+        <form>
+          <input type='number' min='0' placeholder='insert number'/>
+          <button>CREATE</button>
+        </form>
+      </div>
+      <div class='container'>
+      </div>
+    </div>
+  </body>
+  <script>
+    const handleClick = (e) => {
+      e.preventDefault();
+      const input = document.getElementsByTagName('input')[0];
+      createCircles(input.value);
+    }
+
+    const createCircles = (num) => {
+      const container = document.getElementsByClassName('container')[0];
+      // delete children if there are any
+      container.querySelectorAll('*').forEach((child) => child.remove())
+      // add new children according to requested value
+      for (let i = 0; i < Number(num); i++) {
+        const circle = document.createElement('div');
+        circle.setAttribute('class', 'circle');
+        circle.setAttribute('data-num', i + 1);
+        console.log(circle)
+        container.appendChild(circle);
+      }
+    }
+    const button = document.getElementsByTagName('button')[0];
+    button.addEventListener('click', handleClick);
+  </script>
+</html>
